@@ -1,0 +1,134 @@
+# Interacciones
+
+## Una persona
+
+Cuando creas una persona, debes darle un nombre. Todas las personas nuevas comienzan con estadísticas específicas: 80 puntos de hambre, 10 puntos de sueño y 80 puntos de resistencia. Cada una de estas estadísticas debe permanecer en el rango de 0 a 100.
+
+### Verificar estado
+
+Si le preguntas a una persona sobre su estado, responderá con:
+
+```
+Mi nombre es {{name}}, este es mi estado:
+Hambre: {{hambre}}
+Sorpresa: {{soñoliento}}
+Resistencia: {{resistencia}}
+```
+
+También proporcionarán alertas de estado basadas en sus estadísticas:
+
+- "Tengo mucha hambre" si el hambre es 100.
+- "Estoy saciado" si el hambre es 0.
+- "Necesito dormir" si la somnolencia es 100.
+- "Estoy totalmente descansado" si la somnolencia es 0.
+- "Tengo mucha energía" si la resistencia es 100.
+- "Estoy cansado" si la resistencia es 0.
+
+### Hacer ejercicio
+
+Cuando le pides a una persona que haga ejercicio, debes especificar el nivel de intensidad ("bajo", "medio" o "alto"). Así es como afecta sus estadísticas:
+
+- Intensidad **baja**: "He hecho ejercicio a baja intensidad". La resistencia disminuye en 10 puntos y el hambre aumenta en 10 puntos.
+- Intensidad **media**: "He hecho ejercicio a media intensidad". La resistencia disminuye en 25 puntos y el hambre aumenta en 30 puntos.
+- Intensidad **alta**: "He hecho ejercicio a alta intensidad". La resistencia disminuye en 50 puntos y el hambre aumenta en 60 puntos.
+
+### Dormir
+
+Si le dices a una persona que duerma, su hambre aumenta en 20 puntos, el sueño baja a cero y la resistencia aumenta a 100. Dirá: "He dormido".
+
+### Estudiar
+
+Cuando le pides a una persona que estudie, su hambre aumenta en 25 puntos, el sueño aumenta en 30 puntos y la resistencia disminuye en 10 puntos. Responderá: "He estudiado".
+
+### Comer (OPCIONAL)
+
+Si le ordenas a una persona que coma, debes proporcionarle comida. Ajustará sus estadísticas en función de los efectos de la comida. Luego dirá: "Ya comí" y mencionará: "¡Ese {{nombre de la comida}} sabía a {{sabor de la comida}}!"
+
+## Niño (una persona especial)
+
+Los niños son un tipo especial de persona. Se crean exactamente como las personas, pero su hambre comienza con 100 puntos. Además, cuando comen comida, obtienen solo el 80% del efecto de hambre, el 110% del efecto de sueño y el 120% del efecto de resistencia.
+
+## Comida (interfaz para varios tipos)
+
+### Crear comida
+
+Al crear comida, debes proporcionarle varios campos:
+
+- nombre
+- sabor
+- efectos
+- hambre
+- resistencia
+- somnolencia
+
+Donde los efectos indican cómo afecta esta comida a una persona.
+
+### Postre
+
+Si una persona o un niño come postre, sus estadísticas se verán afectadas de la siguiente manera:
+
+El hambre disminuye en 20 puntos.
+La somnolencia permanece sin cambios (0 puntos).
+La ​​resistencia aumenta en 10 puntos.
+
+### Comida
+
+Cuando una persona o un niño come una comida, sus estadísticas cambian de la siguiente manera:
+
+El hambre disminuye en 50 puntos.
+La somnolencia aumenta en 10 puntos.
+La resistencia aumenta en 25 puntos.
+
+### Energizante
+
+Si una persona o un niño consume un energizante, sus estadísticas se ajustarán de la siguiente manera:
+
+El hambre disminuye en 10 puntos.
+La somnolencia disminuye en 50 puntos.
+La resistencia aumenta en 50 puntos.
+
+## Una interfaz
+
+Agrega una interfaz que le pida al usuario que cree una Persona o un Niño.
+
+```
+¿Qué querías crear?
+1. Persona
+2. Niño
+```
+
+Una vez que se haya creado la persona, se mostrará el estado de Persona.
+Puedo pedirles que hagan alguna actividad o que coman algo.
+
+```
+Mi nombre es {{name}}, este es mi estado:
+Hambre: {{hambre}}
+Sorpresa: {{soñoliento}}
+Resistencia: {{resistencia}}
+
+¿Qué querías que hiciera?
+1. Ejercicio
+2. Dormir
+3. Estudiar
+4. Comer
+5. Mostrar estado
+```
+
+Si se selecciona dormir, estudiar o mostrar estado, debe hacer lo que se le pide.
+Si se selecciona ejercicio, se mostrará una lista de intensidades.
+
+```
+Avísame con qué intensidad debo hacer ejercicio:
+1. baja
+2. media
+3. fuerte
+```
+
+Si se selecciona comer, se mostrará una lista de alimentos disponibles.
+
+```
+¿Qué cosa debo comer?
+1. postre
+2. comida
+3. energizante
+```
