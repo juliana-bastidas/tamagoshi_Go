@@ -19,6 +19,7 @@ type foodEffects struct {
 	Stamina    float64
 }
 
+// feeder es una interfaz que tiene dos metodos GetEffects y GetAttributes, los cuales deben devolver un valor tipo foodEffects y foodAtributes respectivamente
 type Feeder interface {
 	GetEffects() foodEffects
 	GetAttributes() foodAtributes
